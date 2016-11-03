@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<!--A Web page containing a form to search movie by title from omdb api. Make an ajax call to omdb api and display data returned by api in your web page.
+
+Hint: Use url "http://www.omdbapi.com/?s=title" in ajax call and title is variable to pass the movie title entered in form. Render the json data returned from api in page. -->
+
+<html>
+	<head>
+		<!-- Website Title & Description for Search Engine purposes -->
+		<title>Movie Search</title>		
+		<!-- Mobile viewport optimized -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">		
+		<!-- Bootstrap CSS -->
+		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="includes/css/bootstrap-glyphicons.css" rel="stylesheet">
+		<!--W3 CSS-->			
+		<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+		<!---google fonts-->
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+		<!--add icons from font-awsome.min.css-->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+		<!-- Custom CSS -->
+		<link rel="stylesheet" href="includes/css/styles.css">		
+		<!-- Include Modernizr in the head, before any other Javascript -->
+		<script src="includes/js/modernizr-2.6.2.min.js"></script>	
+	</head>
+	<body>
+			<div class="container">
+				<div class="navbar navbar-fixed-top">	
+					<!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+					<button class="navbar-toggle" data-target=".navbar-responsive-collapse" data-toggle="collapse" type="button">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				
+					<a class="navbar-brand" href="/"><img src="media/images/logo.png"  alt="Your Logo"><img src="media/images/sitename.jpg"></a>
+					
+					<div class="nav-collapse collapse navbar-responsive-collapse">
+						<ul class="nav navbar-nav pull-right">
+							<li class="active">
+								<a href="#">Home</a>
+							</li>
+							
+							<li class="dropdown">
+			 					<a href="#">Movie News</a>	
+		 					</li>
+		 					<li class="dropdown">
+	 							<a href="#" class="dropdown toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user">MyAccount<strong class="caret"></strong></span></a>
+	 							<ul class="dropdown-menu">
+	 								<li>
+	 									<a href="#"><span class="glyphicon glyphicon-wrench"> Update profileS</span></a>
+	 								</li>
+	 								<li>
+	 									<a href="#"><span class="glyphicon glyphicon-refresh"> View Profile</span></a>
+	 								</li>
+	 								<li>
+	 									<a href="#"><span class="glyphicon glyphicon-gift">View Your Trips</span></a>
+	 								</li>
+	 								<li class="divider"></li>
+	 								<li>
+	 									<a href="#"><span class="glyphicon glyphicon-off">  Signout</span></a></li>
+	 								</li>
+								</ul>
+							</li>
+						</ul><!-- end nav pull-right -->
+					</div><!-- end nav-collapse -->				
+				</div><!-- end navbar -->
+			</div><!-- end container -->
+			<!-- First Parallax Image with Logo Text -->
+			<div class="bgimg-1 container-fluid">
+				<div id="searchdiv">
+				    <span id="searchspan">	 
+						<form class="navbar-form">MOVIE SEARCH
+							<input type="text" class="form-control" placeholder="Search" id="searchInput">
+							<a href="#movies">
+								<button type="button" class="btn btn-default" onclick="getMovie();"><span class="glyphicon glyphicon-search"></span></button>
+							</a>
+						</form>	
+					</span>
+			 	</div>
+			</div>
+			<div class="container">
+			<h3>In theatres</h3><br><br>
+				<div class="row">
+				    <div class="col-sm-3">
+					    <img src="media/images/1.jpg" class="img-responsive img-rectangle" alt="Image">
+					    <h5>Ae-Dil Hai Mushukil</h5>	
+				    </div>	
+				    <div class="col-sm-3">
+					    <img src="media/images/2.jpg" class="img-responsive img-rectangle" alt="Image">
+					    <h5>Jack Reacher:Never go back</h5>
+				    </div>   	
+				    <div class="col-sm-3">
+					    <img src="media/images/3.jpg" class="img-responsive img-rectangle" alt="Image">
+					    <h5>31st October</h5>	
+					</div>
+					 <div class="col-sm-3">
+					    <img src="media/images/4.jpg" class="img-responsive img-rectangle" alt="Image">
+					    <h5>31st October</h5>	
+					</div>
+				</div>
+			</div>
+			
+			<div class="container">
+			<h3>Movies upcoming  ></h3><br><br>
+				<div class="row">
+				    <div class="col-sm-3">
+					    <img src="media/images/11.jpg" class="img-responsive img-rectangle" alt="Image">
+					    <h5>Ae-Dil Hai Mushukil</h5>	
+				    </div>	
+				    <div class="col-sm-3">
+					    <img src="media/images/12.jpg" class="img-responsive img-rectangle" alt="Image">
+					    <h5>Jack Reacher:Never go back</h5>
+				    </div>   	
+				    <div class="col-sm-3">
+					    <img src="media/images/13.jpg" class="img-responsive img-rectangle" alt="Image">
+					    <h5>Force 2</h5>	
+					</div>
+					 <div class="col-sm-3">
+					    <img src="media/images/14.jpg" class="img-responsive img-rectangle" alt="Image">
+					    <h5>31st October</h5>	
+					</div>
+				</div>
+			</div>
+				
+			<div class="container" id="movies">
+				<div class="row" id="data">
+					<div class="col-sm-6">
+						<h4 id="listheading"></h4>
+			   			<ol id="result">
+			   		
+			  		 	</ol>
+					</div><!-- end col-sm-6 -->
+					<div class="col-sm-6">
+						<img src="" id="image" class="img-responsive" width="200" height="300"><h4 id="title"></h4>
+					</div><!-- end col-sm-6 -->
+					
+				</div><!-- end row -->
+			<ul class="pagination" style="visibility:hidden">
+			    <li id="previous"><a href="#movies"> << previous </a></li>
+			    <li id="next"><a href="#movies"> next >> </a></li>
+			 </ul>
+			</div>
+  		
+
+
+			<footer>
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-3">
+					<h6>Copyright &copy; 2016 laljose</h6>
+					</div><!-- end col-sm-3 -->
+				
+					<div class="col-sm-3">
+						<h6>Navigation</h6>
+						<ul>
+							<li><a href="#">Home</a></li>
+							<li><a href="#">Services</a></li>
+							<li><a href="#">Contact</a></li>
+						</ul>
+					</div><!-- end col-sm-3 -->
+					<div class="col-sm-3 w3-xlarge w3-padding-10">
+						<h6>find us on:</h6>
+    					<a href="#"><i class="fa fa-facebook-official"></i></a>
+     					<a href="#"><i class="fa fa-twitter"></i></a>
+    					<a href="#"><i class="fa fa-linkedin"></i></a>
+					</div><!-- end col-sm-3 -->
+					<div class="col-sm-3">
+						<h6>About us:</h6>						
+							<h6>
+								Mymoviescollection.com started its service in 2016 by providing videos from English, Hindi, Malayalam, Tamil and Telugu film industry. From the beginning we tried our best to provide the details of movies.
+							</h6>			
+					</div><!-- end col-sm-3 -->			
+				</div><!-- end row -->
+			</div><!-- end container -->
+		</footer>
+
+	<!-- All Javascript at the bottom of the page for faster page loading -->
+		
+	<!-- First try for the online version of jQuery-->
+	<script src="http://code.jquery.com/jquery.js"></script>
+	
+	<!-- If no online access, fallback to our hardcoded version of jQuery -->
+	<script>window.jQuery || document.write('<script src="includes/js/jquery-3.1.1.min.js"><\/script>')</script>
+	
+	<!-- Bootstrap JS -->
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+	<!--Custum js-->
+	<script src="includes/js/script.js"></script>
+	
+	
+	</body>
+</html>
+

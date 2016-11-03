@@ -1,0 +1,117 @@
+/*
+My Custom CSS
+=============
+Author: laljose
+*/
+
+/* --------------------------------------
+   Layout
+   -------------------------------------- */
+
+.container{
+	padding: 40px;
+	text-align: center;
+}
+#movies{
+	padding-top: 80px;
+	text-align: left;
+	margin-top: 20px;
+
+}
+#movies ol li:hover{
+	font-style: italic;
+}
+#movies ul li{
+	color: black;
+}
+#searchdiv #searchspan {
+    position:absolute;
+    top: 35%;
+    left: 35%;
+}
+
+/* --------------------------------------
+   Navbar
+   -------------------------------------- */
+.navbar{
+	padding-top: 10px;
+	background-color: white;
+}  
+.navbar ul,col-sm-3 ul{
+	list-style-type: none;
+}
+
+
+/* --------------------------------------
+   Global Styles
+   -------------------------------------- */
+.row{
+	padding:10px;
+}
+/*.................................................
+		Footer
+..................................................*/
+.col-sm-3 img{
+	padding-bottom: 3px;
+	padding-left: 16px;
+}
+footer {
+	background: #333;
+	color: #eee;
+	font-size: 14px;
+	padding: 50px;
+	margin: 0px;
+}
+
+footer:hover{
+	background-color: black;
+}
+
+#searchInput {
+
+	width: 300px;
+
+}
+
+/*..............................................
+style from w3 css
+................................................*/
+h1,h2,h3,h4,h5{font-family: "Lato", sans-serif;
+	color: black;
+}
+h6{font-family: "Lato", sans-serif;}
+body, html {
+    height: 100%;
+    color: white;
+    line-height: 1.8;
+
+}
+ul li a{
+	text-decoration: none;
+}
+/* Create a Parallax Effect */
+.bgimg-1{
+    opacity: 0.8;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* First image (Logo. Full height) */
+.bgimg-1{
+    background-image: url("../../media/images/film-banner.jpg");
+    min-height: 100%;
+}
+
+/* --------------------------------------
+   Media Queries
+   -------------------------------------- */
+/* Turn off parallax scrolling for tablets and phones */
+
+@media only screen and (max-width: 1024px) {
+    .bgimg-1{
+        background-attachment: scroll;
+    }
+}
+
